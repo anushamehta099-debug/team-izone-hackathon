@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Applicant Registration - BLRM</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body style="background-color: #EBE3DB;">
+
+    <header>
+        <div class="logo-box">
+            <span class="logo-text">Climate Action</span>
+        </div>
+        <nav>
+            <a href="index.html">Home</a>
+            <a href="#">How it Works</a>
+            <a href="#">Find Repair Jobs</a>
+            <a href="#" class="btn-signup">Sign Up</a>
+        </nav>
+    </header>
+
+    <main class="form-page">
+        <section id="registration-form">
+            <form id="ApplicantForm" class="registration-form">
+                <h2>Applicant Registration (Repairer)</h2>
+                
+                <label for="appName">Name:</label><input type="text" id="appName" required>
+                <label for="appAddress">Address:</label><input type="text" id="appAddress" required>
+                <label for="appEmail">Email:</label><input type="email" id="appEmail" required>
+                <label for="appPhone">Phone No:</label><input type="tel" id="appPhone" required>
+                
+                <label>Citizenship card with photos (Upload):</label><input type="file" required>
+                <label>Experience (Certificate photos optional):</label><input type="file" multiple>
+
+                <label>Specialist (Select all that apply):</label>
+                <div class="checkbox-group">
+                    <input type="checkbox" id="spec1" name="specialist" value="Electronic"><label for="spec1">Electronic repair</label>
+                    <input type="checkbox" id="spec2" name="specialist" value="HomeAppliances"><label for="spec2">Home appliances repair</label>
+                    <input type="checkbox" id="spec3" name="specialist" value="Vehicle"><label for="spec3">Vehicle and machine repair</label>
+                    <input type="checkbox" id="spec4" name="specialist" value="Fabric"><label for="spec4">Fabric repair</label>
+                    <input type="checkbox" id="spec5" name="specialist" value="Plumbing"><label for="spec5">Plumbing and water system repair</label>
+                    <input type="checkbox" id="spec6" name="specialist" value="Metal"><label for="spec6">Metal and welding repair</label>
+                    <input type="checkbox" id="spec7" name="specialist" value="Upcycling"><label for="spec7">Upcycling and restoration</label>
+                </div>
+
+                <label for="appArea">What area do you provide service in?</label><input type="text" id="appArea" required>
+                <label>Service Type:</label>
+                <div class="radio-group">
+                    <input type="radio" id="st1" name="serviceType" value="HomeVisit" required><label for="st1">Home visit</label>
+                    <input type="radio" id="st2" name="serviceType" value="PickupDrop"><label for="st2">Pick up and drop service</label>
+                </div>
+                <label>Working Hours:</label>
+                <div class="checkbox-group">
+                    <input type="checkbox" id="wh1" name="workingHours" value="Morning"><label for="wh1">Morning</label>
+                    <input type="checkbox" id="wh2" name="workingHours" value="Evening"><label for="wh2">Evening</label>
+                    <input type="checkbox" id="wh3" name="workingHours" value="FullDay"><label for="wh3">Full day</label>
+                </div>
+
+                <button type="submit" class="btn-primary">Register and Apply</button>
+            </form>
+        </section>
+    </main>
+    
+    <footer>
+        <div class="footer-container">
+            <div class="footer-col brand-col">
+                <h4 class="footer-logo">BLRM Dashboard</h4>
+                <p class="copyright">&copy; 2025 Buy Less, Repair More. All rights reserved.</p>
+            </div>
+
+            <div class="footer-col">
+                <h4>Support</h4>
+                <ul>
+                    <li><a href="#">Help Center</a></li>
+                    <li><a href="#">Contact Support</a></li>
+                    <li><a href="#">Report an Issue</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-col">
+                <h4>Legal</h4>
+                <ul>
+                    <li><a href="#">Privacy Policy</a></li>
+                    <li><a href="#">Terms of Service</a></li>
+                    <li><a href="#">License Agreement</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-col">
+                <h4>Info</h4>
+                <p>Version: 1.0.0-beta</p>
+                <p>Status: Operational</p>
+            </div>
+        </div>
+    </footer>
+    
+    <script>
+        // Placeholder JS for form submission feedback
+        document.getElementById('ApplicantForm').addEventListener('submit', (e) => {
+            e.preventDefault();
+            alert('Applicant Registration Submitted! Thank you for applying.');
+            window.location.href = 'index.html'; // Redirect to home on success
+        });
+    </script>
+</body>
+</html>

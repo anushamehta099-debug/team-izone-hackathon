@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Thrift Seller - List Item</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body style="background-color: #EBE3DB;">
+
+    <header>
+        <div class="logo-box">
+            <span class="logo-text">Climate Action</span>
+        </div>
+        <nav>
+            <a href="index.html">Home</a>
+            <a href="#">How it Works</a>
+            <a href="Thrift Buyer Page.html">Thrift Buyers</a>
+            <a href="#" class="btn-signup">Sign Up</a>
+        </nav>
+    </header>
+
+    <main class="form-page">
+        <section id="seller-form">
+            <form id="ThriftSellerForm" class="registration-form">
+                <h2>Thrift Seller - List an Item</h2>
+                <label for="sellerName">Your name:</label><input type="text" id="sellerName" required>
+                <label for="sellerLocation">General location (for nearby filtering):</label><input type="text" id="sellerLocation" required>
+                <label for="sellerContact">Contact preference:</label><input type="email" id="sellerContact" placeholder="Email or Phone" required>
+                
+                <h3>Item Details</h3>
+                <label for="sellerItem">What item are you selling?</label><input type="text" id="sellerItem" required>
+                <label for="sellerCondition">Condition of the item:</label>
+                <select id="sellerCondition" required>
+                    <option value="">-- Select Condition --</option>
+                    <option value="NewLike">New-like</option>
+                    <option value="Good">Good</option>
+                    <option value="Usable">Usable</option>
+                </select>
+                <label for="sellerAge">Age of the item:</label><input type="text" id="sellerAge" required>
+                <label for="sellerReason">Why are you selling it? (optional):</label><textarea id="sellerReason" rows="2"></textarea>
+                <label>Upload photos/videos:</label><input type="file" multiple required>
+
+                <h3>Price & Delivery</h3>
+                <label for="sellerPrice">Your expected price:</label><input type="number" id="sellerPrice" required>
+                <label>Negotiable?</label>
+                <div class="radio-group">
+                    <input type="radio" id="negYes" name="negotiable" value="Yes" required><label for="negYes">Yes</label>
+                    <input type="radio" id="negNo" name="negotiable" value="No"><label for="negNo">No</label>
+                </div>
+                <label>Delivery Option:</label>
+                <div class="radio-group">
+                    <input type="radio" id="delPickup" name="delivery" value="PickupOnly" required><label for="delPickup">Pickup only</label>
+                    <input type="radio" id="delDelivery" name="delivery" value="DeliveryAvailable"><label for="delDelivery">Delivery available</label>
+                </div>
+
+                <button type="submit" class="btn-primary">List Item</button>
+            </form>
+        </section>
+    </main>
+
+    <footer>
+        <div class="footer-container">
+            <div class="footer-col brand-col">
+                <h4 class="footer-logo">BLRM Dashboard</h4>
+                <p class="copyright">&copy; 2025 Buy Less, Repair More. All rights reserved.</p>
+            </div>
+
+            <div class="footer-col">
+                <h4>Support</h4>
+                <ul>
+                    <li><a href="#">Help Center</a></li>
+                    <li><a href="#">Contact Support</a></li>
+                    <li><a href="#">Report an Issue</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-col">
+                <h4>Legal</h4>
+                <ul>
+                    <li><a href="#">Privacy Policy</a></li>
+                    <li><a href="#">Terms of Service</a></li>
+                    <li><a href="#">License Agreement</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-col">
+                <h4>Info</h4>
+                <p>Version: 1.0.0-beta</p>
+                <p>Status: Operational</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        document.getElementById('ThriftSellerForm').addEventListener('submit', (e) => {
+            e.preventDefault();
+            alert('Thrift Item Listed Successfully!');
+            window.location.href = 'index.html';
+        });
+    </script>
+</body>
+</html>

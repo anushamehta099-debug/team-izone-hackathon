@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Customer Repair Request - BLRM</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body style="background-color: #EBE3DB;">
+
+    <header>
+        <div class="logo-box">
+            <span class="logo-text">Climate Action</span>
+        </div>
+        <nav>
+            <a href="index.html">Home</a>
+            <a href="#">How it Works</a>
+            <a href="#">Find Repair Jobs</a>
+            <a href="#" class="btn-signup">Sign Up</a>
+        </nav>
+    </header>
+
+    <main class="form-page">
+        <section id="request-form">
+            <form id="CustomerForm" class="registration-form">
+                <h2>Customer Service Request (Repair)</h2>
+                
+                <label for="custName">Name:</label><input type="text" id="custName" required>
+                <label for="custAddress">Address:</label><input type="text" id="custAddress" required>
+                <label for="custLocation">Current Location (Needed for nearby search):</label>
+                <input type="text" id="custLocation" readonly placeholder="Click to detect location" required>
+                <button type="button" class="location-btn" onclick="getLocation()"><i class="fas fa-map-marker-alt"></i> Get Location</button>
+                <label for="custPhone">Phone No:</label><input type="tel" id="custPhone" required>
+
+                <label>What do you need to repair (Select one):</label>
+                <div class="radio-group">
+                    <input type="radio" id="rep1" name="repairType" value="Electronic" required><label for="rep1">Electronic repair</label>
+                    <input type="radio" id="rep4" name="repairType" value="Fabric"><label for="rep4">Fabric repair</label>
+                    </div>
+                
+                <label for="custIssue">Describe the item and issue:</label><textarea id="custIssue" rows="4" required></textarea>
+                <label>Upload photos or video of the damage:</label><input type="file" multiple required>
+                
+                <label>Do you want home service and drop off?</label>
+                <div class="radio-group">
+                    <input type="radio" id="sp1" name="servicePref" value="HomeVisit" required><label for="sp1">Home visit</label>
+                    <input type="radio" id="sp2" name="servicePref" value="BringToShop"><label for="sp2">Bring it to shop</label>
+                    <input type="radio" id="sp3" name="servicePref" value="PickService"><label for="sp3">Pick service</label>
+                </div>
+                <label>When do you want the repair to be done?</label>
+                <div class="radio-group">
+                    <input type="radio" id="urg1" name="urgency" value="Urgent" required><label for="urg1">Urgent</label>
+                    <input type="radio" id="urg4" name="urgency" value="Flexible"><label for="urg4">Flexible</label>
+                </div>
+                
+                <button type="submit" class="btn-primary">Submit Repair Request</button>
+            </form>
+        </section>
+    </main>
+
+    <footer>
+        <div class="footer-container">
+            <div class="footer-col brand-col">
+                <h4 class="footer-logo">BLRM Dashboard</h4>
+                <p class="copyright">&copy; 2025 Buy Less, Repair More. All rights reserved.</p>
+            </div>
+
+            <div class="footer-col">
+                <h4>Support</h4>
+                <ul>
+                    <li><a href="#">Help Center</a></li>
+                    <li><a href="#">Contact Support</a></li>
+                    <li><a href="#">Report an Issue</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-col">
+                <h4>Legal</h4>
+                <ul>
+                    <li><a href="#">Privacy Policy</a></li>
+                    <li><a href="#">Terms of Service</a></li>
+                    <li><a href="#">License Agreement</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-col">
+                <h4>Info</h4>
+                <p>Version: 1.0.0-beta</p>
+                <p>Status: Operational</p>
+            </div>
+        </div>
+    </footer>
+
+    <div id="rating-modal" class="modal hidden">
+        </div>
+    
+    <script>
+        function getLocation() {
+            // Placeholder for Geolocation API integration
+            alert('Location access requested. In a live environment, this would auto-fill the location field.');
+            document.getElementById('custLocation').value = '35.1234, 139.5678 (Simulated)';
+        }
+
+        document.getElementById('CustomerForm').addEventListener('submit', (e) => {
+            e.preventDefault();
+            alert('Customer request submitted! Searching for nearby repairers...');
+            // In a real app, this would trigger the app rating popup after a service is completed.
+            window.location.href = 'index.html'; // Redirect to home for simplicity
+        });
+    </script>
+</body>
+</html>

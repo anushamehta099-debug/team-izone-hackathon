@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Thrift Buyer - Find Items</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body style="background-color: #EBE3DB;">
+
+    <header>
+        <div class="logo-box">
+            <span class="logo-text">Climate Action</span>
+        </div>
+        <nav>
+            <a href="index.html">Home</a>
+            <a href="#">How it Works</a>
+            <a href="Thrift Seller Page.html">List an Item</a>
+            <a href="#" class="btn-signup">Sign Up</a>
+        </nav>
+    </header>
+
+    <main class="form-page">
+        <section id="buyer-flow">
+            <form id="ThriftBuyerForm" class="registration-form">
+                <h2>Thrift Buyer - Set Preferences</h2>
+                <label for="buyerName">Your name:</label><input type="text" id="buyerName" required>
+                <label for="buyerLocation">General location:</label><input type="text" id="buyerLocation" required>
+                <label for="buyerContact">Contact preference:</label><input type="email" id="buyerContact" placeholder="Email or Phone" required>
+                
+                <h3>Buying Preferences</h3>
+                <label for="buyerItem">What item are you looking for?</label><input type="text" id="buyerItem" required>
+                <label for="buyerPriceMin">Price Range (Min):</label><input type="number" id="buyerPriceMin" required>
+                <label for="buyerPriceMax">Price Range (Max):</label><input type="number" id="buyerPriceMax" required>
+
+                <label>Condition preference:</label>
+                <div class="radio-group">
+                    <input type="radio" id="condNew" name="conditionPref" value="new-like" required><label for="condNew">new-like</label>
+                    <input type="radio" id="condGood" name="conditionPref" value="good"><label for="condGood">good</label>
+                    <input type="radio" id="condUsable" name="conditionPref" value="usable"><label for="condUsable">usable</label>
+                </div>
+                <label>Urgency:</label>
+                <div class="radio-group">
+                    <input type="radio" id="urgSoon" name="urgencyPref" value="soon" required><label for="urgSoon">need soon</label>
+                    <input type="radio" id="urgAnytime" name="urgencyPref" value="anytime"><label for="urgAnytime">anytime</label>
+                </div>
+
+                <button type="submit" class="btn-primary">Show Matching Listings</button>
+            </form>
+
+            <div id="thrift-results" class="hidden registration-form" style="margin-top: 20px;">
+                <h2>Matching Thrift Listings (Filtered)</h2>
+                <p class="no-results hidden">No listings match your criteria or are within 15 km.</p>
+            </div>
+        </section>
+    </main>
+    
+    <footer>
+        <div class="footer-container">
+            <div class="footer-col brand-col">
+                <h4 class="footer-logo">BLRM Dashboard</h4>
+                <p class="copyright">&copy; 2025 Buy Less, Repair More. All rights reserved.</p>
+            </div>
+
+            <div class="footer-col">
+                <h4>Support</h4>
+                <ul>
+                    <li><a href="#">Help Center</a></li>
+                    <li><a href="#">Contact Support</a></li>
+                    <li><a href="#">Report an Issue</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-col">
+                <h4>Legal</h4>
+                <ul>
+                    <li><a href="#">Privacy Policy</a></li>
+                    <li><a href="#">Terms of Service</a></li>
+                    <li><a href="#">License Agreement</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-col">
+                <h4>Info</h4>
+                <p>Version: 1.0.0-beta</p>
+                <p>Status: Operational</p>
+            </div>
+        </div>
+    </footer>
+    
+    <script>
+        const thriftBuyerForm = document.getElementById('ThriftBuyerForm');
+        const thriftResults = document.getElementById('thrift-results');
+        
+        // Mock data structure and filtering logic (based on the original request)
+        thriftBuyerForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+            thriftBuyerForm.classList.add('hidden');
+
+            const item = document.getElementById('buyerItem').value.toLowerCase();
+            const priceMin = parseFloat(document.getElementById('buyerPriceMin').value) || 0;
+            const priceMax = parseFloat(document.getElementById('buyerPriceMax').value) || Infinity;
+            
+            const mockListings = [
+                { id: 1, item: 'dining table', price: 150, distance: 3.5, condition: 'good', seller: 'S001' },
+                { id: 4, item: 'blender', price: 30, distance: 1.1, condition: 'good', seller: 'S004' },
+                { id: 5, item: 'sofa', price: 400, distance: 14.9, condition: 'good', seller: 'S005' },
+                // Listing outside 15km radius (will be filtered out)
+                { id: 2, item: 'blender', price: 45, distance: 18.2, condition: 'new-like', seller: 'S002' },
+            ];
+            
+            // Filters: Item, Price Range, and Mock Distance <= 15km
+            const filteredListings = mockListings.filter(listing => {
+                const matchesItem = listing.item.toLowerCase().includes(item);
+                const matchesPrice = listing.price >= priceMin && listing.price <= priceMax;
+                const isNearby = listing.distance <= 15; 
+                return matchesItem && matchesPrice && isNearby;
+            });
+
+            renderThriftListings(filteredListings);
+            thriftResults.classList.remove('hidden');
+        });
+
+        function renderThriftListings(listings) {
+            const resultsContainer = thriftResults;
+            const noResults = resultsContainer.querySelector('.no-results');
+            
+            // Clear previous results, keep the heading/no-results elements
+            const existingCards = resultsContainer.querySelectorAll('.listing-card');
+            existingCards.forEach(card => card.remove());
+
+            if (listings.length === 0) {
+                noResults.classList.remove('hidden');
+            } else {
+                noResults.classList.add('hidden');
+                listings.forEach(listing => {
+                    const card = document.createElement('div');
+                    card.classList.add('listing-card');
+                    // Listing Card Structure (needs CSS definition for 'listing-card' etc.)
+                    card.innerHTML = `
+                        <div class="listing-image-placeholder" style="background-color: #D1C7BD;"><i class="fas fa-camera"></i></div>
+                        <div class="listing-info">
+                            <h4>${listing.item.toUpperCase()}</h4>
+                            <p>Condition: <strong>${listing.condition}</strong></p>
+                            <p>Seller ID: ${listing.seller}</p>
+                        </div>
+                        <div>
+                            <div class="listing-price" style="font-size: 1.5em; font-weight: bold;">$${listing.price}</div>
+                            <div class="listing-distance" style="color: green;">${listing.distance} km away</div>
+                            <button class="btn-primary" style="margin-top: 10px; padding: 5px 10px;">Contact Seller</button>
+                        </div>
+                    `;
+                    resultsContainer.appendChild(card);
+                });
+            }
+        }
+    </script>
+</body>
+</html>
